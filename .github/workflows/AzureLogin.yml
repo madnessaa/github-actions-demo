@@ -21,3 +21,14 @@ jobs:
              inlineScript: |
                Get-AzResourceGroup
              azPSVersion: "latest"
+             
+        - name: 'Create file on Blob'
+          uses: azure/powershell@v1
+          with:
+             inlineScript: |
+                  $storageaccountname="myuniquemadstorage120922"
+                  $containername="testgithub"
+                  $resourcegroup="bicepRG"
+                  #Get the Azure Storage account context
+                  $storagecontext = (Get-AzStorageAccount -ResourceGroupName $resourcegroup -Name $storageaccountname)
+                  Get-AzStorageBlob -Container $containername -Context $storagecontext | Select-Object -Property Name
