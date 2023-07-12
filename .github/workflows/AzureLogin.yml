@@ -32,3 +32,4 @@ jobs:
                   #Get the Azure Storage account context
                   $storagecontext = (Get-AzStorageAccount -ResourceGroupName $resourcegroup -Name $storageaccountname)
                   Get-AzStorageBlob -Container $containername -Context $storagecontext | Select-Object -Property Name
+             azPSVersion: "latest"
