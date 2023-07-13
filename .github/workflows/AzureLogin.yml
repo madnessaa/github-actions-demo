@@ -13,7 +13,8 @@ jobs:
           uses: azure/login@v1
           with:
             #creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
-            creds: '${{secrets.AZURE_CREDS}}'
+            #creds: '${{secrets.AZURE_CREDS}}'
+            creds: '{"clientId":"${{ secrets.CLIENT_ID_AR }}","clientSecret":"${{ secrets.CLIENT_SECRET_AR }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
             enable-AzPSSession: true
 
         - name: 'Get RG with powershell action'
