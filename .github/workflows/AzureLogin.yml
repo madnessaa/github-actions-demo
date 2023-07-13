@@ -28,7 +28,7 @@ jobs:
           uses: azure/powershell@v1
           with:
              inlineScript: |
-               New-Item -Path ${{ github.workspace }} -Name "testfile2.txt" -ItemType "file" -Value "This is a text string."
+               New-Item -Path ${{ github.workspace }} -Name "testfile3.txt" -ItemType "file" -Value "This is a text string."
              azPSVersion: "latest" 
              
         - name: 'Create file on Blob'
@@ -42,6 +42,6 @@ jobs:
                   #$storagecontext = (Get-AzStorageAccount -ResourceGroupName $resourcegroup -Name $storageaccountname)
                   Get-AzStorageAccount -Name $storageaccountname -ResourceGroupName $resourcegroup |
                   Get-AzStorageContainer -Name $containername |
-                  Set-AzStorageBlobContent -File '${{ github.workspace }}\testfile2.txt' -Blob 'testfile2.txt'
+                  Set-AzStorageBlobContent -File '${{ github.workspace }}\testfile3.txt' -Blob 'testfile3.txt'
                   #Get-AzStorageBlob -Container $containername -Context $storagecontext | Select-Object -Property Name
              azPSVersion: "latest"
