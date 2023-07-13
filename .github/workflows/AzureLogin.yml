@@ -12,7 +12,8 @@ jobs:
         - name: OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
           uses: azure/login@v1
           with:
-            creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+            #creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
+            creds: '${{secrets.AZURE_CREDS}}'
             enable-AzPSSession: true
 
         - name: 'Get RG with powershell action'
@@ -26,7 +27,7 @@ jobs:
           uses: azure/powershell@v1
           with:
              inlineScript: |
-               New-Item -Path ${{ github.workspace }} -Name "testfile1.txt" -ItemType "file" -Value "This is a text string."
+               New-Item -Path ${{ github.workspace }} -Name "testfile2.txt" -ItemType "file" -Value "This is a text string."
              azPSVersion: "latest" 
              
         - name: 'Create file on Blob'
@@ -40,6 +41,6 @@ jobs:
                   #$storagecontext = (Get-AzStorageAccount -ResourceGroupName $resourcegroup -Name $storageaccountname)
                   Get-AzStorageAccount -Name $storageaccountname -ResourceGroupName $resourcegroup |
                   Get-AzStorageContainer -Name $containername |
-                  Set-AzStorageBlobContent -File '${{ github.workspace }}\testfile1.txt' -Blob 'testfile1.txt'
+                  Set-AzStorageBlobContent -File '${{ github.workspace }}\testfile2.txt' -Blob 'testfile1.txt'
                   #Get-AzStorageBlob -Container $containername -Context $storagecontext | Select-Object -Property Name
              azPSVersion: "latest"
