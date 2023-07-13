@@ -41,6 +41,6 @@ jobs:
                   #$storagecontext = (Get-AzStorageAccount -ResourceGroupName $resourcegroup -Name $storageaccountname)
                   Get-AzStorageAccount -Name $storageaccountname -ResourceGroupName $resourcegroup |
                   Get-AzStorageContainer -Name $containername |
-                  Set-AzStorageBlobContent -File '${{ github.workspace }}\testfile2.txt' -Blob 'testfile1.txt'
+                  Set-AzStorageBlobContent -File '${{ github.workspace }}\testfile2.txt' -Blob 'testfile2.txt'
                   #Get-AzStorageBlob -Container $containername -Context $storagecontext | Select-Object -Property Name
              azPSVersion: "latest"
